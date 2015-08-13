@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>Html offline cache</title>
+   		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   		<script>
+   			var url = 'http://localhost/html-offline-cache/index.php';
+   			
+   			if (window.XMLHttpRequest){
+		    	// code for IE7+, Firefox, Chrome, Opera, Safari
+		        xmlhttp=new XMLHttpRequest();
+		    }
+		    else{
+		    	// code for IE6, IE5
+		        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		    }
+		    xmlhttp.onreadystatechange=function(){
+		        if (xmlhttp.readyState == 4){
+		        	if (xmlhttp.status === 200) {  
+			       		window.location.replace('url');
+					} else {  
+			        	document.getElementById('cache-error').style.display = 'block';
+			    	}  
+		        }
+		    };
+		    xmlhttp.open("GET", url, false );
+		    xmlhttp.send();
+   		</script>
+   		<style>
+   			#cache-error {
+   				display:none;
+   			}
+   		</style>
+	</head>
+	<body>
+        <div id="cache-error">
+        	Can't load cached file
+        </div>
+	</body>
+</html>
